@@ -1,0 +1,460 @@
+/* ==========================================================================
+   VARIÁVEIS GLOBAIS
+   Centraliza valores para facilitar edição futura (cores, espaçamentos, etc.)
+   ========================================================================== */
+/* ==========================================================================
+   TIPOGRAFIA MANUSCRITA
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@700&family=Bangers&display=swap');
+
+:root {
+  --color-bg: #ffffff;
+  --color-bg-cream: #fdf6e3;
+  --color-line: #1a1a1a;
+  --color-line-soft: #cfcfcf;
+  --color-accent-yellow: #ffc72c;
+  --color-accent-red: #e1483a;
+  --color-accent-blue: #3b6fd6;
+
+  --container-max-width: 1440px;
+  --section-padding-inline: clamp(24px, 6vw, 96px);
+  --page-frame-margin: 20px;
+
+  --navbar-height: 60px;
+  --navbar-padding-inline: clamp(16px, 2.5vw, 40px);
+  --hero-padding-block: clamp(40px, 6vw, 90px);
+  --cards-padding-block: clamp(24px, 4vw, 56px);
+  --cards-gap: 20px;
+
+  --font-hand: 'Patrick Hand', cursive;
+  --font-hand-logo: 'Caveat', cursive;
+  --font-comic: 'Bangers', cursive;
+
+  /* traço "desenhado à mão": levemente irregular, nunca perfeitamente reto */
+  --sketch-border: 2px solid var(--color-line);
+  --sketch-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --sketch-radius-card: 30px 12px 30px 12px / 12px 30px 12px 30px;
+  --sketch-radius-frame: 18px;
+}
+
+/* ==========================================================================
+   RESET BÁSICO
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #f2f2f2;
+  -webkit-font-smoothing: antialiased;
+  padding: var(--page-frame-margin);
+}
+
+/* ==========================================================================
+   CONTAINER PRINCIPAL
+   Largura 100%, fundo branco, "moldura" com aparência desenhada à mão
+   ========================================================================== */
+.page-container {
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  background-color: var(--color-bg);
+  border: var(--sketch-border);
+  border-radius: var(--sketch-radius-frame);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* linha vertical decorativa lembrando encadernação de caderno */
+.page-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 28px;
+  width: 0;
+  height: 100%;
+  border-right: 1px dashed var(--color-line-soft);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   1. NAVBAR
+   ========================================================================== */
+.navbar {
+  position: relative;
+  width: 100%;
+  height: var(--navbar-height);
+  padding-inline: var(--navbar-padding-inline);
+  background-color: var(--color-bg-cream);
+  border-top: 3px solid var(--color-line);
+  border-bottom: 3px solid var(--color-line);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  font-family: var(--font-hand);
+}
+
+/* ---- grupos internos (esquerda / centro / direita) ---- */
+.navbar__group {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.navbar__group--center {
+  gap: 12px;
+}
+
+.navbar__group--right {
+  gap: 32px;
+}
+
+/* ---- ícone de casa (extremo esquerdo) ---- */
+.navbar__home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__home-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* ---- links de texto ---- */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.navbar__link {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--color-line);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navbar__link:hover,
+.navbar__link:focus-visible {
+  text-decoration: underline;
+}
+
+/* ---- logo central ---- */
+.navbar__logo {
+  font-family: var(--font-hand-logo);
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  color: var(--color-accent-yellow);
+  -webkit-text-stroke: 1.3px var(--color-line);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ---- elementos decorativos (preparados para receber imagens) ---- */
+.navbar__decor {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.navbar__decor--extra {
+  width: 24px;
+  height: 24px;
+  /* ainda sem imagem definitiva: mantém indicador visual de placeholder */
+  border: 1px dashed var(--color-line-soft);
+  border-radius: 3px;
+}
+
+/* ---- botão Login (extremo direito) ---- */
+.navbar__login {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  padding: 6px 22px;
+  background-color: var(--color-bg);
+  color: var(--color-line);
+  border: 2px solid var(--color-line);
+  border-radius: 18px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.navbar__login:hover,
+.navbar__login:focus-visible {
+  background-color: var(--color-bg-cream);
+}
+
+/* ==========================================================================
+   2. HERO PRINCIPAL
+   ========================================================================== */
+.hero {
+  width: 100%;
+  padding-block: var(--hero-padding-block);
+  padding-inline: var(--section-padding-inline);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 48px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* ---- coluna esquerda: imagem ---- */
+.hero__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__image {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ---- coluna direita: título, texto e botão ---- */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 18px;
+}
+
+.hero__title {
+  font-family: var(--font-comic);
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 0.9;
+  letter-spacing: 1px;
+  color: var(--color-accent-yellow);
+  -webkit-text-stroke: 3px var(--color-line);
+  text-stroke: 3px var(--color-line);
+  text-shadow: 2px 2px 0 rgba(225, 72, 58, 0.5);
+  margin: 0;
+}
+
+.hero__text {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: var(--color-line);
+  max-width: 42ch;
+  margin: 0;
+}
+
+.hero__cta {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  padding: 10px 28px;
+  background-color: var(--color-accent-red);
+  color: var(--color-bg);
+  border: 2px solid var(--color-line);
+  border-radius: 24px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.hero__cta:hover,
+.hero__cta:focus-visible {
+  filter: brightness(1.08);
+}
+
+/* ==========================================================================
+   3. ÁREA DE CARDS DE NAVEGAÇÃO
+   ========================================================================== */
+.nav-cards {
+  width: 100%;
+  padding-block: var(--cards-padding-block);
+  padding-inline: var(--section-padding-inline);
+}
+
+.nav-cards__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--cards-gap);
+}
+
+.nav-card {
+  aspect-ratio: 3 / 2;
+  background-color: var(--color-bg-cream);
+  border: 1.5px solid var(--color-line);
+  border-radius: 16px 18px 14px 20px / 18px 14px 20px 16px;
+  padding: 18px 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+/* ---- cabeçalho interno: etiqueta + imagem lado a lado ---- */
+.nav-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.nav-card__label {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--color-line);
+  background-color: var(--color-accent-yellow);
+  border: 1.5px solid var(--color-line);
+  border-radius: 14px;
+  padding: 5px 16px;
+  white-space: nowrap;
+}
+
+.nav-card__image {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.nav-card__text {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--color-line);
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE — HERO
+   Desktop (padrão): 2 colunas, inalterado.
+   Tablet: Hero permanece em 2 colunas (só os cards mudam nesta faixa).
+   Mobile (≤640px): Hero empilha em 1 coluna.
+   ========================================================================== */
+@media (max-width: 640px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .hero__content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero__title {
+    font-size: 3.5rem;
+  }
+
+  .hero__text {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 2.6rem;
+    -webkit-text-stroke: 2px var(--color-line);
+  }
+
+  .hero__text {
+    font-size: 1.1rem;
+  }
+
+  .hero__cta {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE — NAVBAR
+   ========================================================================== */
+@media (max-width: 760px) {
+  :root {
+    --navbar-padding-inline: 4vw;
+  }
+
+  .navbar__group {
+    gap: 20px;
+  }
+
+  .navbar__group--right {
+    gap: 16px;
+  }
+
+  .navbar__links {
+    gap: 20px;
+  }
+
+  .navbar__links--left .navbar__link:nth-child(2) {
+    display: none; /* esconde "Contato", mantém "Ajuda" */
+  }
+
+  .navbar__logo {
+    font-size: 1.5rem;
+  }
+
+  .navbar__decor {
+    display: none; /* remove decorações menores em telas pequenas */
+  }
+
+  .navbar__login {
+    padding: 5px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar__links--left {
+    display: none; /* prioriza logo, casa e login em telas muito pequenas */
+  }
+
+  .navbar__group--right .navbar__links--right {
+    display: none;
+  }
+
+  .navbar {
+    padding-inline: 3vw;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE — CARDS
+   Desktop (padrão): 4 colunas, inalterado.
+   Tablet (≤1024px): 2 colunas.
+   Mobile (≤640px): 1 coluna.
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .nav-cards__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --section-padding-inline: clamp(16px, 5vw, 96px);
+  }
+
+  .nav-cards__grid {
+    grid-template-columns: 1fr;
+  }
+}

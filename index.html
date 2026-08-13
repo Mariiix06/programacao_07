@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Container principal: largura 100%, fundo branco, aparência "desenhada à mão" -->
+  <div class="page-container">
+
+    <!-- ========================================= -->
+    <!-- 1. NAVBAR                                   -->
+    <!-- ========================================= -->
+    <header class="navbar">
+
+      <!-- Bloco esquerdo: ícone da casa + links Ajuda/Contato -->
+      <div class="navbar__group navbar__group--left">
+        <a href="#" class="navbar__home" aria-label="Página inicial">
+          <img src="assets/icons/home.jpg" alt="Ícone de casa" class="navbar__home-icon">
+        </a>
+
+        <nav class="navbar__links navbar__links--left" aria-label="Navegação secundária">
+          <a href="#" class="navbar__link">Ajuda</a>
+          <a href="#" class="navbar__link">Contato</a>
+        </nav>
+      </div>
+
+      <!-- Bloco central: elementos decorativos + logo -->
+      <div class="navbar__group navbar__group--center">
+        <img src="assets/decor/decor-left.jpg" alt="" class="navbar__decor" aria-hidden="true">
+
+        <a href="#" class="navbar__logo">PEANUTS</a>
+
+        <img src="assets/decor/decor-right.jpg" alt="" class="navbar__decor" aria-hidden="true">
+      </div>
+
+      <!-- Bloco direito: link Quem somos + decoração + botão Login -->
+      <div class="navbar__group navbar__group--right">
+        <nav class="navbar__links navbar__links--right" aria-label="Navegação institucional">
+          <a href="#" class="navbar__link">Quem somos</a>
+        </nav>
+
+        <img src="assets/decor/decor-extra.svg" alt="" class="navbar__decor navbar__decor--extra" aria-hidden="true">
+
+        <button type="button" class="navbar__login">Login</button>
+      </div>
+
+    </header>
+
+    <!-- ========================================= -->
+    <!-- 2. HERO PRINCIPAL                           -->
+    <!-- ========================================= -->
+    <section class="hero">
+      <div class="hero__grid">
+
+        <!-- Coluna esquerda: ilustração principal -->
+        <div class="hero__media">
+          <img src="assets/peanuts-hero.jpg" alt="Personagens de Peanuts reunidos" class="hero__image">
+        </div>
+
+        <!-- Coluna direita: título, texto e botão -->
+        <div class="hero__content">
+          <h1 class="hero__title">PEANUTS</h1>
+
+          <p class="hero__text">
+            Aqui, até um dia comum pode virar uma grande aventura!
+            Abra a porta, sente-se no telhado e fique à vontade.
+          </p>
+
+          <button type="button" class="hero__cta">Ver destaques</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================= -->
+    <!-- 3. ÁREA DE CARDS DE NAVEGAÇÃO               -->
+    <!-- ========================================= -->
+    <section class="nav-cards">
+      <div class="nav-cards__grid">
+        <!-- Conteúdo interno dos demais cards será adicionado depois -->
+        <article class="nav-card nav-card--personagens" aria-label="Personagens">
+          <div class="nav-card__header">
+            <span class="nav-card__label">Personagens</span>
+            <img src="assets/personagens.jpg" alt="Personagens de Peanuts" class="nav-card__image">
+          </div>
+          <p class="nav-card__text">Os rostos por trás do universo Peanuts</p>
+        </article>
+        <article class="nav-card nav-card--tirinhas" aria-label="Tirinhas">
+          <div class="nav-card__header">
+            <span class="nav-card__label">Tirinhas</span>
+            <img src="assets/tirinhas.jpg" alt="Tirinhas de Peanuts" class="nav-card__image">
+          </div>
+          <p class="nav-card__text">As melhores histórias cabem em poucos quadrinhos</p>
+        </article>
+        <article class="nav-card nav-card--episodios" aria-label="Episódios">
+          <div class="nav-card__header">
+            <span class="nav-card__label">Episódios</span>
+            <img src="assets/episodios.jpg" alt="Episódios de Peanuts" class="nav-card__image">
+          </div>
+          <p class="nav-card__text">Aventuras que ganham vida além dos quadrinhos</p>
+        </article>
+        <article class="nav-card nav-card--historia" aria-label="História">
+          <div class="nav-card__header">
+            <span class="nav-card__label">História</span>
+            <img src="assets/historia.jpg" alt="História de Peanuts" class="nav-card__image">
+          </div>
+          <p class="nav-card__text">Descubra como nasceu o universo de Peanuts</p>
+        </article>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
